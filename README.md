@@ -18,7 +18,6 @@ The most general steps needed to be able to use the code found in the repository
 5. Compile and upload the code
 6. Debug your project
 7. Try the robot out on the maze!
-8. Create a presentation and prepare for it
 
 ## Links to resources
 
