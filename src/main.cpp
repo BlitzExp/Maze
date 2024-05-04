@@ -67,28 +67,29 @@ void setup() {
 /************************************************
  *                  Main loop 
  ***********************************************/
-void loop() {
-  moveForward(255,motorA, motorB);
-  float DistanceFront = readUltrasonic(U_sensorFront);
-  Serial.println(DistanceFront);
-  if (DistanceFront<=10){
-    float DistanceRight = readUltrasonic(U_sensorRight);
-    if (DistanceRight>15){
-      moveBackward(255,motorA,motorB);
-      delay(200);
-      rotate90('R',motorA,motorB);
-      moveForward(255,motorA,motorB);
-      delay(300);
-      rotate90('R',motorA,motorB);
+void loop() { //Loop de ejecución
+  moveForward(255,motorA, motorB); //Se mueve hacia delante
+  float DistanceFront = readUltrasonic(U_sensorFront); //El sensor ultrasónico del frente mide la distancia
+  Serial.println(DistanceFront); //Se imprime la distancia para verificar funcionamiento
+  if (DistanceFront<=10){ //Si la distancia con una pared enfrente es menor a 10
+    float DistanceRight = readUltrasonic(U_sensorRight); //Se mide la distancia con la pared de la derecha
+    if (DistanceRight>15){ //Si la distancia con la pared de la derecha es mayor a 15
+      //Se inicia el proceso para girar hacia la derecha
+      moveBackward(255,motorA,motorB); //Se va hacia atras poquito
+      delay(200); //Delay de 200 microsegundos
+      rotate90('R',motorA,motorB); //Gira hacia la derecha con la función del template de rotate 90
+      moveForward(255,motorA,motorB); //Va hacia el frente
+      delay(300); //Por 300 microsegundos 
+      rotate90('R',motorA,motorB);//Gira hacia la derecha con la función del template de rotate 90
     }else {
-      moveBackward(255,motorA,motorB);
-      delay(200);
-      rotate90('L',motorA,motorB);
-      moveForward(255,motorA,motorB);
-      delay(300);
-      rotate90('L',motorA,motorB);
+      moveBackward(255,motorA,motorB);//Se va hacia atras poquito
+      delay(200);//Delay de 200 microsegundos
+      rotate90('L',motorA,motorB);//Gira hacia la izquierda con la función del template de rotate 90
+      moveForward(255,motorA,motorB);//Va hacia delante
+      delay(300);//Delay de 300 microsegundos
+      rotate90('L',motorA,motorB);//Gira hacia la izquierda con la función del template de rotate 90
       }//float DistanceLeft = readUltrasonic(U_sensorLeft);2
     
   } 
-  delay(100);
+  delay(100);//Delay de 100 microsegundos estandar para que el sensor ultrasónico funcione bien
 }
