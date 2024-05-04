@@ -20,7 +20,7 @@
 #include "../include/motor.h"
 
 
-#define ROTATE90_TIME  700
+#define ROTATE90_TIME  390
 #define ROTATE90_PWM_INTENSITY  200
 #define ROTATE90ONE_TIME 1000
 #define ROTATE90ONE_PWM_INTENSITY 200
@@ -33,7 +33,7 @@
  ***********************************************/
 
 void moveForward(int speed, motor &motorA, motor &motorB){
-  analogWrite(motorA.en, 190);
+  analogWrite(motorA.en, 180);
   analogWrite(motorB.en, speed);
 
   digitalWrite(motorA.in1, HIGH);
@@ -93,7 +93,7 @@ void rotateLeft_one(int speed, motor &motorA, motor &motorB) {
 
 
 void moveBackward(int speed, motor &motorA, motor &motorB) {
-    analogWrite(motorA.en, speed);
+    analogWrite(motorA.en, 190);
     analogWrite(motorB.en, speed);
 
     digitalWrite(motorA.in1, LOW);
@@ -141,7 +141,7 @@ void rotate90(char direction, motor &motorA, motor &motorB){
     // Adjust speed and time for the robots to rotate 90 degrees
     if(direction == 'L' || direction == 'l'){
         rotateLeft_axis(ROTATE90_PWM_INTENSITY, motorA, motorB);
-        delay(ROTATE90_TIME);
+        delay(450);
         stop(motorA, motorB);
     }else if(direction == 'R' || direction == 'r'){
         rotateRight_axis(ROTATE90_PWM_INTENSITY, motorA, motorB);

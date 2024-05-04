@@ -71,12 +71,24 @@ void loop() {
   moveForward(255,motorA, motorB);
   float DistanceFront = readUltrasonic(U_sensorFront);
   Serial.println(DistanceFront);
-  if (DistanceFront<=20){
+  if (DistanceFront<=10){
     float DistanceRight = readUltrasonic(U_sensorRight);
     if (DistanceRight>15){
+      moveBackward(255,motorA,motorB);
+      delay(200);
+      rotate90('R',motorA,motorB);
+      moveForward(255,motorA,motorB);
+      delay(300);
+      rotate90('R',motorA,motorB);
+    }else {
+      moveBackward(255,motorA,motorB);
+      delay(200);
       rotate90('L',motorA,motorB);
-    }else {rotate90('R',motorA,motorB);}//float DistanceLeft = readUltrasonic(U_sensorLeft);2
-  }
-
+      moveForward(255,motorA,motorB);
+      delay(300);
+      rotate90('L',motorA,motorB);
+      }//float DistanceLeft = readUltrasonic(U_sensorLeft);2
+    
+  } 
   delay(100);
 }
