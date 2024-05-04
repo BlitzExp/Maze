@@ -13,7 +13,7 @@
 #include "../include/sensor.h"
 
 
-void readUltrasonic(ultrasonic &U_sensor){
+float readUltrasonic(ultrasonic &U_sensor){
     pinMode(U_sensor.trigger, OUTPUT); // Sets the trigPin as an Output
   	pinMode(U_sensor.echo, INPUT); // Sets the echoPin as an Input
 	digitalWrite(U_sensor.trigger, LOW); // Clears the trigPin
@@ -26,4 +26,5 @@ void readUltrasonic(ultrasonic &U_sensor){
 	long duration = pulseIn(U_sensor.echo, HIGH);
 
 	U_sensor.distance = duration * SOUND_SPEED/2;
+	return U_sensor.distance;
 }

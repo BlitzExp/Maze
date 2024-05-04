@@ -141,5 +141,6 @@ void rotate90(char direction, motor &motorA, motor &motorB);
 */
 void rotate90_one(char direction, motor &motorA, motor &motorB);
 
+void rotate_radius(char direction, motor &motorA, motor &motorB);
 
 #endif // MOTOR_CONTROL_H

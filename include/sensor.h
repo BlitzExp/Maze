@@ -34,6 +34,6 @@ struct ultrasonic{
 };
 
 // Turn the sensor on, get a reading, convert time into distance
-void readUltrasonic(ultrasonic &U_sensor);
+float readUltrasonic(ultrasonic &U_sensor);
 
 #endif // SENSOR_READINGS_H

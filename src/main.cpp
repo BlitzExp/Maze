@@ -14,14 +14,14 @@
 #define IN1_MOTOR_A 14
 #define IN2_MOTOR_A 12
 
-#define ENABLE_MOTOR_B 14
+#define ENABLE_MOTOR_B 4
 #define IN1_MOTOR_B 15
-#define IN2_MOTOR_B 12
+#define IN2_MOTOR_B 2
 
-#define LEFT_ECHO_PIN 26
-#define LEFT_TRIGGER_PIN 27
-#define FRONT_ECHO_PIN 18
-#define FRONT_TRIGGER_PIN 5
+#define FRONT_ECHO_PIN 26
+#define FRONT_TRIGGER_PIN 27
+#define LEFT_ECHO_PIN 18
+#define LEFT_TRIGGER_PIN 5
 #define RIGHT_ECHO_PIN 25
 #define RIGHT_TRIGGER_PIN 33
 
@@ -68,5 +68,15 @@ void setup() {
  *                  Main loop 
  ***********************************************/
 void loop() {
+  moveForward(255,motorA, motorB);
+  float DistanceFront = readUltrasonic(U_sensorFront);
+  Serial.println(DistanceFront);
+  if (DistanceFront<=20){
+    float DistanceRight = readUltrasonic(U_sensorRight);
+    if (DistanceRight>15){
+      rotate90('L',motorA,motorB);
+    }else {rotate90('R',motorA,motorB);}//float DistanceLeft = readUltrasonic(U_sensorLeft);2
+  }
 
+  delay(100);
 }

@@ -20,20 +20,20 @@
 #include "../include/motor.h"
 
 
-#define ROTATE90_TIME = 700
-#define ROTATE90_PWM_INTENSITY = 200
-#define ROTATE90ONE_TIME = 1000
-#define ROTATE90ONE_PWM_INTENSITY = 200
+#define ROTATE90_TIME  700
+#define ROTATE90_PWM_INTENSITY  200
+#define ROTATE90ONE_TIME 1000
+#define ROTATE90ONE_PWM_INTENSITY 200
 
-#define ROTATE_LEAD_MOTOR =  165
-#define ROTATE_FOLLOW_MOTOR =  130
+#define ROTATE_LEAD_MOTOR 165
+#define ROTATE_FOLLOW_MOTOR 130
 
 /************************************************
  *  Common movement functions and rotations
  ***********************************************/
 
 void moveForward(int speed, motor &motorA, motor &motorB){
-  analogWrite(motorA.en, speed);
+  analogWrite(motorA.en, 190);
   analogWrite(motorB.en, speed);
 
   digitalWrite(motorA.in1, HIGH);
@@ -140,11 +140,11 @@ void rotateRight_radius(motor &motorA, motor &motorB){
 void rotate90(char direction, motor &motorA, motor &motorB){
     // Adjust speed and time for the robots to rotate 90 degrees
     if(direction == 'L' || direction == 'l'){
-        moveLeft(ROTATE90_PWM_INTENSITY, motorA, motorB);
+        rotateLeft_axis(ROTATE90_PWM_INTENSITY, motorA, motorB);
         delay(ROTATE90_TIME);
         stop(motorA, motorB);
     }else if(direction == 'R' || direction == 'r'){
-        moveRight(ROTATE90_PWM_INTENSITY, motorA, motorB);
+        rotateRight_axis(ROTATE90_PWM_INTENSITY, motorA, motorB);
         delay(ROTATE90_TIME);
         stop(motorA, motorB);
     }else{
@@ -156,11 +156,26 @@ void rotate90(char direction, motor &motorA, motor &motorB){
 void rotate90_one(char direction, motor &motorA, motor &motorB){
     // Adjust speed and time for the robots to rotate 90 degrees
     if(direction == 'L' || direction == 'l'){
-        moveLeftOne(ROTATE90ONE_PWM_INTENSITY, motorA, motorB);
+        rotateRight_one(ROTATE90ONE_PWM_INTENSITY, motorA, motorB);
         delay(ROTATE90ONE_TIME);
         stop(motorA, motorB);
     }else if(direction == 'R' || direction == 'r'){
-        moveRightOne(ROTATE90ONE_PWM_INTENSITY, motorA, motorB);
+        rotateLeft_one(ROTATE90ONE_PWM_INTENSITY, motorA, motorB);
+        delay(ROTATE90ONE_TIME);
+        stop(motorA, motorB);
+    }else{
+        Serial.print("Not a valid rotation direction.");
+    }   
+}
+
+void rotate_radius(char direction, motor &motorA, motor &motorB){
+    // Adjust speed and time for the robots to rotate 90 degrees
+    if(direction == 'L' || direction == 'l'){
+        rotateRight_radius(motorA, motorB);
+        delay(ROTATE90ONE_TIME);
+        stop(motorA, motorB);
+    }else if(direction == 'R' || direction == 'r'){
+        rotateLeft_radius(motorA, motorB);
         delay(ROTATE90ONE_TIME);
         stop(motorA, motorB);
     }else{
