@@ -19,6 +19,10 @@ The most general steps needed to be able to use the code found in the repository
 6. Debug your project
 7. Try the robot out on the maze!
 
+Diagrama de conexión
+![image](https://github.com/BlitzExp/Maze/assets/141747380/e80d5515-dc7e-4faf-b800-e5cbc0b1ddf5)
+
+
 ## Links to resources
 
 [Download Visual Studio Code](https://code.visualstudio.com/download)
